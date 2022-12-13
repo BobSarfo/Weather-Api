@@ -1,7 +1,17 @@
-# Awesome Project Build with TypeORM
+# Weather API project
 
-Steps to run this project:
+The project exposes two endpoint 
+`GET /incidents`
+`POST /incident`
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+## Description 
+An typecript node api request is made to an external weather api and data is saved in the database together with the request. from  https://openweathermap.org/current
+
+### Tools Used
+* Node
+* Express
+* Typeorm
+
+##Steps to run this project:
+
+1. Run `docker-compose up` command
