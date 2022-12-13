@@ -31,21 +31,3 @@ export class IncidentsController {
     response.status(201).send(true)
   }
 }
-
-
-// router.get("/", async function (request: Request, response: Response, next: NextFunction) {
-
-//     response.status(200).send(await dbContext.getRepository(Incident).find());
-
-// });
-
-// // About page route.
-// router.post("/", async function (request: Request<IWeatherRequest>, response: Response, next: NextFunction) {
-//     let weatherData = await GetWeatherData(request.body);
-//     let result = WeatherDataToIncident(request.body, weatherData);
-
-//     this.incidentRepository.save(result);
-//     response.status(201).send(true)
-// });
-
-// module.exports = router;
