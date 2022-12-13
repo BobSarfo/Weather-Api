@@ -1,3 +1,5 @@
+import express from 'express';
+import "reflect-metadata"
 import { AppDataSource } from "./data-source"
 import { User } from "./entity/User"
 
@@ -15,6 +17,20 @@ AppDataSource.initialize().then(async () => {
     const users = await AppDataSource.manager.find(User)
     console.log("Loaded users: ", users)
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+    console.log("starting application...")
+    
+    const app = express();
+    const port = 3000;
+    
+    app.get('/', (req, res) => {
+      res.send('Hello World!');
+    });
+    
+    app.listen(port, () => {
+      return console.log(`Express is listening at http://localhost:${port}`);
+    });
+
+
+
 
 }).catch(error => console.log(error))
