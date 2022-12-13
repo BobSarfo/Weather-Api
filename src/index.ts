@@ -1,11 +1,18 @@
 import express from 'express';
-import "reflect-metadata"
+//import "reflect-metadata"
 import { dbContext } from "./data-source"
 import { User } from "./entity/User"
-import { IWeatherRequest } from './models/IWeatherRequest';
+import * as bodyParser from "body-parser"; 
+import { IncidentsController } from './controllers/IncidentsController';
+
 
 dbContext.initialize().then(async () => {
 
+    const app = express();
+    app.use(bodyParser.json()); 
+
+      // register express routes from defined application routes
+      
     console.log("Inserting a new user into the database...")
     const user = new User()
     user.firstName = "Timber"
@@ -20,19 +27,11 @@ dbContext.initialize().then(async () => {
 
     console.log("starting application...")
 
-    const app = express();
     const port = 3000;
 
-    app.get('/', (req, res) => {
-        res.send('Hello World!');
-    });
-
-    app.get('/incidents', (req, res) => {
-        res.send('Hello World!');
-    });
-
-    app.post('/incident', (req, res) => {
-        res.send('Hello World!');
+    app.use("/", new IncidentsController().router);
+    app.get('/health', (req, res) => {
+        res.send('active');
     });
 
     app.listen(port, () => {
