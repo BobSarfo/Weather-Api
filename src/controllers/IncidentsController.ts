@@ -3,6 +3,7 @@ import { Incident } from "../entity/Incident";
 import { dbContext } from "../data-source";
 import { IWeatherRequest } from "../models/IWeatherRequest";
 import { GetWeatherData, weatherDataToIncident } from "../services/incident_service";
+import { Country_Codes } from "../services/country_codes";
 
 
 export class IncidentsController {
@@ -22,7 +23,14 @@ export class IncidentsController {
  }
 
   async save(request: Request<IWeatherRequest>, response: Response) {
-    let weatherData = await GetWeatherData(request.body);
+    let countryRequest = request.body.country.toUpperCase();
+    if(!(countryRequest in Country_Codes)){
+      response.status(400).send("invalid country input. please check and try again later")      
+    }
+    
+    let country_code = Country_Codes[countryRequest];
+
+    let weatherData = await GetWeatherData(request.body, country_code);
     let result = weatherDataToIncident(request.body, weatherData);
     let res = await dbContext.getRepository(Incident).save(result);
     if (res===undefined) {

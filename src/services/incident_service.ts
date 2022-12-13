@@ -2,11 +2,13 @@ import { dbContext } from "../data-source";
 import { Incident } from "../entity/Incident";
 import { IWeathApiResponse } from "../models/IWeatherApiReponse";
 import { IWeatherRequest } from "../models/IWeatherRequest";
+import { Country_Codes } from "./country_codes";
 import { GetWeatherDataFromAPI } from "./weather-client";
 
-export async function GetWeatherData(req: IWeatherRequest): Promise<IWeathApiResponse> {
+export async function GetWeatherData(req: IWeatherRequest, country_code:string): Promise<IWeathApiResponse> {
     try {
-        let response = await GetWeatherDataFromAPI(req.city, req.country);
+            
+        let response = await GetWeatherDataFromAPI(req.city, country_code);
         return response.data;
     } catch (error) {
         console.warn("error occurred with http client call: " + error)
