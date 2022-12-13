@@ -12,6 +12,6 @@ An typecript node api request is made to an external weather api and data is sav
 * Express
 * Typeorm
 
-##Steps to run this project:
+## Steps to run this project:
 
 1. Run `docker-compose up` command
