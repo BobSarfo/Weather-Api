@@ -9,7 +9,7 @@ export const dbContext = new DataSource({
     port: 5432,
     username: process.env.DATABASE_USERNAME || "postgres",
     password: process.env.DATABASE_PASSWORD ||"postgres",
-    database: "weather",
+    database: process.env.DATABASE || "weather",
     synchronize: true,
     logging: false,
     entities: [User,Incident],
