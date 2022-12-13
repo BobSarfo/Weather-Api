@@ -10,6 +10,7 @@ export async function GetWeatherData(req: IWeatherRequest): Promise<IWeathApiRes
         return response.data;
     } catch (error) {
         console.warn("error occurred with http client call: " + error)
+        return undefined;
     }
 }
 

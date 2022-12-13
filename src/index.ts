@@ -1,4 +1,5 @@
 import express from 'express';
+require('dotenv').config();
 //import "reflect-metadata"
 import { dbContext } from "./data-source"
 import { User } from "./entity/User"
@@ -12,22 +13,10 @@ dbContext.initialize().then(async () => {
     app.use(bodyParser.json()); 
 
       // register express routes from defined application routes
-      
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.firstName = "Timber"
-    user.lastName = "Saw"
-    user.age = 25
-    await dbContext.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
-
-    console.log("Loading users from the database...")
-    const users = await dbContext.manager.find(User)
-    console.log("Loaded users: ", users)
 
     console.log("starting application...")
 
-    const port = 3000;
+    const port = process.env.PORT || 3000;
 
     app.use("/", new IncidentsController().router);
     app.get('/health', (req, res) => {
