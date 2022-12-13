@@ -1,5 +1,5 @@
 import { cp } from "fs"
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class Incident {
@@ -14,6 +14,10 @@ export class Incident {
 
     @Column()
     city: string
+
+
+    @CreateDateColumn()
+    date: Date;
 
     @Column()
     country: string
