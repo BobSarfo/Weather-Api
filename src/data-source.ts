@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { Incident } from "./entity/Incidents"
+import { Incident } from "./entity/Incident"
 import { User } from "./entity/User"
 
 export const dbContext = new DataSource({
